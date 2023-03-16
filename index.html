@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List Project</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>          
+    <h1>12.8.0 To Do List Project. Список дел. Модальное окно.</h1>
+
+    <div class="task_background">
+        <div class="colors">
+            <input type="radio" name="round" id="white" checked="checked">
+            <label for="white" class="back white"></label>
+        </div>
+        <div class="colors">
+            <input type="radio" name="round"  id="red">
+            <label for="red" class="back red"></label>
+        </div>
+        <div class="colors">
+            <input type="radio" name="round" id="blue">
+            <label for="blue" class="back blue"></label>
+        </div>
+        <div class="colors">
+            <input type="radio" name="round" id="green">
+            <label for="green" class="back green"></label>
+        </div>
+        <div class="colors">
+            <input type="radio" name="round" id="gold">
+            <label for="gold" class="back gold"></label>
+        </div>
+        <div class="colors">
+            <input type="radio" name="round" id="gray">
+            <label for="gray" class="back gray"></label>
+        </div>
+        <div class="colors">
+            <input type="radio" name="round" id="purple">
+            <label for="purple" class="back purple"></label>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="add">
+            <input type="text" class="add_text" placeholder="Добавьте задачу в список дел...">
+            <button class="add_button">Добавить</button>
+        </div>
+        <div class="filter" data-filter="all">
+            <button class="filter_btn" data-filter="all">all</button>
+            <button class="filter_btn white" data-filter="white">white</button>
+            <button class="filter_btn red" data-filter="red">red</button>
+            <button class="filter_btn blue" data-filter="blue">blue</button>
+            <button class="filter_btn green" data-filter="green">green</button>
+            <button class="filter_btn yellow" data-filter="gold">yellow</button>
+            <button class="filter_btn gray" data-filter="gray">gray</button>
+            <button class="filter_btn purple" data-filter="purple">purple</button>
+        </div>
+        <div class="task"></div>
+    </div>
+    <div class="feedback"></div>
+    <div class="remove_button">
+        <button class="remove_all">Удалить все задачи</button>
+        <button class="remove_all_select">Удалить все выбранные задачи</button>
+    </div>
+    <div class="modal modal_hidden">
+        <div class="modal_del">
+            <h3>Вы действительно хотите удалить все задачи?</h3>
+            <div class="modal_del_btns">
+                <button class="modal_del_btn modal_del_btn_not">Отмена</button>
+                <button class="modal_del_btn modal_del_btn_yes">Удалить</button>
+            </div>
+        </div>
+      </div>
+</body>
+</html>

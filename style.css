@@ -1,0 +1,452 @@
+@charset "utf-8";
+
+/* @font-face {
+    font-family: "New family";
+    src: url(fonts/New_family.eot);
+} */
+
+:root {
+    --gap: 10px;
+    --transit: 0.5s;
+    --border_radius: 5px;
+    --padding: 7px;
+    --button-background: tomato;
+    --font_family: Consolas;
+    --modal_bgr: rgb(0, 128, 128, 0.6);
+    --modal_txt_clr: white;
+    --btn_bgr_del: red;
+    --clr_teal: teal;
+}
+/* ============================================================ */
+/* - start -                      СТАНДАРТ                      */
+/* ============================================================ */
+*, *::after, *::before {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: Consolas, Cursive;
+    user-select: none; /* Убрать стандартную синию подсветку текста при двойном клике */
+}
+
+a {
+    text-decoration: none;
+    white-space: nowrap; /* Запрет ломаться строкам */
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+    border: none;
+    object-fit: cover;
+}
+
+input, textarea {
+    margin: 0;
+    padding: var(--padding);
+    border: 0;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: normal;
+}
+
+input:focus, textarea:focus, button:focus, select:focus {
+    outline: 0; /* При фокусе убрать выделение рамки (border) */
+}
+
+textarea {
+    vertical-align: top;
+    overflow: auto;
+}
+
+select {
+    cursor: pointer;
+}
+
+input[type = text] {
+    width: 100%;
+    font: normal 20px var(--font_family);
+    border-radius: var(--border_radius);
+}
+
+input[type = radio] {
+    width: 13px;
+    height: 13px;
+}
+
+input[type = checkbox] {
+    width: 25px;
+    height: 19px;
+    margin-right: 10px;
+}
+
+input[type = submit], button {
+    padding: var(--padding);
+    background-color: var(--button-background);
+    font: bold 20px var(--font_family);
+    margin-left: 7px;
+    border: 1px solid #555;
+    border-radius: var(--border_radius);
+    cursor: pointer;
+    transform: scale(1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+input[type = submit]:hover, button:hover {
+    box-shadow: 0 2px 4px var(--modal_txt_clr);
+    border: 1px solid var(--modal_txt_clr);
+}
+
+input[type = submit]:active, button:active {
+    transform: scale(0.97);
+}
+
+input[type = submit]::-moz-focus-inner, button::-moz-focus-inner {
+    border: 0;
+}
+/* ============================================================ */
+/* - end -                       СТАНДАРТ                       */
+/* ============================================================ */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #01a7a7, #38ffbd);
+    min-height: 100vh;
+    padding: 10px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: var(--padding);
+    margin-top: 10px;
+    background-color: teal;
+    border: 1px solid #555;
+    border-radius: var(--border_radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    text-align: center;
+    font: normal 30px Cursive;
+    letter-spacing: 1px;
+}
+
+.task_background {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin: 20px 0px;
+}
+
+/* ============================================================ */
+/* - start -           input[type=checkbox]:checked             */
+/* ============================================================ */
+.task_background {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.colors {
+    margin: 0px 15px;
+}
+
+.task_background input[type = radio] {
+    display: none;
+}
+
+input[type=radio]:checked + label.back:before {
+    content: "\2713";
+    text-shadow: 1px 1px 1px rgb(0 0 0 / 20%);
+    font-size: 35px;
+    color: #000;
+    text-align: center;
+    line-height: 5px;
+}
+
+label.back {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;  
+}
+
+label.white:before {
+    content: "";
+    border: 1px solid #555;
+    background-color:  white;
+    color: rgb(219, 219, 219);
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    box-shadow: inset 0px -2px 2px 1px rgb(43, 150, 208, 0.3), 
+                      0px 1px 0px 0px rgba(200, 200, 200, 0.8);
+}
+
+label.red:before {
+    content: "";
+    border: 1px solid #555;
+    background-color:  #fc5454;
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    box-shadow: inset 0px -2px 2px 1px rgb(43, 150, 208, 0.3), 
+                      0px 1px 0px 0px rgba(200, 200, 200, 0.8);
+}
+
+label.blue:before {
+    content: "";
+    border: 1px solid #555;
+    background-color: dodgerblue;
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    box-shadow: inset 0px -2px 2px 1px rgb(43, 150, 208, 0.3), 
+                      0px 1px 0px 0px rgba(200, 200, 200, 0.8);
+}
+
+label.green:before {
+    content: "";
+    border: 1px solid #555;
+    background-color: limegreen;
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    box-shadow: inset 0px -2px 2px 1px rgb(43, 150, 208, 0.3), 
+                      0px 1px 0px 0px rgba(200, 200, 200, 0.8);
+}
+
+label.gold:before {
+    content: "";
+    border: 1px solid #555;
+    background-color: gold;
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    box-shadow: inset 0px -2px 2px 1px rgb(43, 150, 208, 0.3), 
+                      0px 1px 0px 0px rgba(200, 200, 200, 0.8);
+}
+
+label.gray:before {
+    content: "";
+    border: 1px solid #555;
+    background-color: gray;
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    box-shadow: inset 0px -2px 2px 1px rgb(43, 150, 208, 0.3), 
+                      0px 1px 0px 0px rgba(200, 200, 200, 0.8);
+}
+
+label.purple:before {
+    content: "";
+    border: 1px solid #555;
+    background-color:  #887dd3;
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    box-shadow: inset 0px -2px 2px 1px rgb(43, 150, 208, 0.3), 
+                      0px 1px 0px 0px rgba(200, 200, 200, 0.8);
+}
+/* ============================================================ */
+/* - end -            input[type=checkbox]:checked              */
+/* ============================================================ */
+.filter {
+    padding-bottom: 7px;
+    margin: 0px 0px 0px -7px;
+    display: flex;
+    gap: 10px;
+}
+.filter_btn {
+    margin-top: 10px;
+}
+.filter_btn.white {
+    background-color: white;
+}
+.filter_btn.red {
+    background-color:  #fc5454;
+}
+.filter_btn.blue {
+    background-color: dodgerblue;
+}
+.filter_btn.green {
+    background-color: limegreen;
+}
+.filter_btn.yellow {
+    background-color: gold;
+}
+.filter_btn.gray {
+    background-color: gray;
+}
+.filter_btn.purple {
+    background-color:  #887dd3;
+}
+
+.add, .task_add {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.task {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.task_add {
+    display: flex;
+    width: 100%;
+    padding: var(--padding);
+    border-radius: var(--border_radius);
+    margin-top: 10px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.task_add input {
+    background-color: inherit;  /* наследует от родителя */
+    font: normal 20px var(--font_family);
+    padding: 5px;    
+}
+
+.task_add input:first-child {
+    cursor: pointer;
+}
+
+.task_add input:focus {
+    outline: none;
+}
+
+.remove_button button {
+    margin-top: 15px;
+}
+
+.feedback {
+    display: none;
+    padding: 5px;
+    margin-top: 15px;
+    background-color: pink;
+    border: 1px solid #555;
+    border-radius: 5px;
+}
+
+.block {
+    display: block;
+}
+/* =========================================================== */
+/* - start -                  Модальное окно                   */
+/* =========================================================== */
+.modal {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--modal_bgr);
+    transition: all 0.4s ease;
+    opacity: 1;
+}
+.modal_hidden {
+    top: -100%; /* сверху вниз */
+    /* top: 100%; */ /* снизу наверх */
+    opacity: 0;
+}
+.modal_del {
+    position: relative;
+    top: 0;
+    width: 50%;
+    height: fit-content;
+    padding: 15px 25px;
+    border: 2px solid var(--modal_txt_clr);
+    border-radius: 5px;
+    background-color: var(--clr_teal);
+    transition: all 0.3s ease-in;
+}
+.modal_del h3 {
+    font: normal 35px Cursive;
+    letter-spacing: 0.9px;
+    line-height: 40px;
+    color: var(--modal_txt_clr);
+    margin: 0;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.modal_del_btns {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.modal_del_btn {
+    font-size: 26px;
+}
+.modal_del_btn:hover {
+    background-color: rgba(255, 0, 0, 0.3);
+}
+.modal_del_btn_not {
+    background-color: inherit;
+    color: white;
+    border: 1px solid white;
+}
+.modal_del_btn_yes {
+    background-color: var(--btn_bgr_del);
+    border: 1px solid var(--btn_bgr_del);
+    color: white;
+}
+/* =========================================================== */
+/* - end -                   Модальное окно                    */
+/* =========================================================== */
+
+/* =========================================================== */
+/* - start -             @media(max-width: 1200px)             */
+/* =========================================================== */
+@media(max-width: 1200px) {
+    .task_add input:first-child {
+        width: 32px;
+    }
+}
+/* =========================================================== */
+/* - end -               @media(max-width: 1200px)             */
+/* =========================================================== */
+/* =========================================================== */
+/* - start -             @media(max-width: 767px)              */
+/* =========================================================== */
+@media(max-width: 767px) {
+    .task_add input:first-child {
+        width: 35px;
+    }
+}
+/* =========================================================== */
+/* - end -               @media(max-width: 767px)              */
+/* =========================================================== */
+/* =========================================================== */
+/* - start -             @media(max-width: 600px)              */
+/* =========================================================== */
+@media(max-width: 600px) {
+    .task_add input:first-child {
+        width: 49px;
+    }
+}
+/* =========================================================== */
+/* - end -               @media(max-width: 600px)              */
+/* =========================================================== */
